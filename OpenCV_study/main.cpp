@@ -12,7 +12,7 @@ using namespace cv;
 int main()
 {
     detect detection;
-    Mat img_frame, img_color, img_edge;
+    Mat img_frame, img_color, img_edge, img_region;
     Mat grayscaleFrame;
 
     // 동영상 파일 열기
@@ -49,11 +49,14 @@ int main()
         //엣지검출
         Canny(grayscaleFrame, img_edge, 50, 150);
 
+        //관심영역지정
+        img_region = detection.region(img_edge);
+
         // 변환된 프레임을 출력 동영상에 저장
-        writer.write(img_edge);
+        writer.write(img_region);
 
         // 변환된 프레임을 화면에 출력
-        imshow("Grayscale Video",img_edge);
+        imshow("Grayscale Video",img_region);
 
         // ESC 키를 누르면 종료
         if (waitKey(1) == 27)

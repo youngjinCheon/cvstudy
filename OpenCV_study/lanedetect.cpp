@@ -29,6 +29,25 @@ Mat detect::colors(Mat img_frame)
 
     addWeighted(white_image, 1.0, yellow_image, 1.0, 0.0, output);
     return output; 
+}
 
+Mat detect::region(Mat img_edge)
+{
+    int width = img_edge.cols;
+    int height = img_edge.rows;
 
+    Mat output;
+    Mat mask = Mat::zeros(height, width, CV_8UC1);
+
+    Point points[4]{
+        Point((width * (1 - limit_bottom)) / 2, height),
+         Point((width * (1 - limit_top)) / 2, height - height * limit_height),
+          Point(width - (width * (1 - limit_top)) / 2, height - height * limit_height),
+           Point(width - (width * (1 - limit_bottom)) / 2, height)
+    };
+
+    fillConvexPoly(mask, points, 4, Scalar(255, 0, 0));
+    bitwise_and(img_edge, mask, output);
+
+    return output;
 }

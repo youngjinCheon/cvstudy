@@ -9,8 +9,14 @@ using namespace cv;
 
 class detect
 {
-	public:
-		Mat colors(Mat img_frame);
+private:
+	double limit_bottom = 0.85;
+	double limit_top = 0.06;
+	double limit_height = 0.4;
 
+
+public:
+	Mat colors(Mat img_frame);
+	Mat region(Mat img_edge);
 
 };
