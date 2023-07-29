@@ -20,7 +20,7 @@ public:
 	Mat colors(Mat img_frame);
 	Mat region(Mat img_edge);
 	vector<Vec4i> houghline(Mat img_region);
-	vector<vector<Vec4i>> sepline(Mat img_edge, vector<Vec4i> lines);
+	vector<vector<Vec4i>> seperateline(Mat img_edge, vector<Vec4i> lines);
 
 
 };
