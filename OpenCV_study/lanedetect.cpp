@@ -51,3 +51,16 @@ Mat detect::region(Mat img_edge)
 
     return output;
 }
+
+vector<Vec4i> detect::houghline(Mat img_region)
+{
+    vector<Vec4i> line;
+
+    HoughLinesP(img_region, line, 1, CV_PI / 180, 20, 10, 20);
+    return line;
+}
+
+vector<vector<Vec4i>> detect::seperateline(Mat img_edge, vector<Vec4i> lines)
+{
+
+}

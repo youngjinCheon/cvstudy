@@ -13,6 +13,7 @@ int main()
 {
     detect detection;
     Mat img_frame, img_color, img_edge, img_region;
+    vector<Vec4i> lines;
     Mat grayscaleFrame;
 
     // 동영상 파일 열기
@@ -51,6 +52,9 @@ int main()
 
         //관심영역지정
         img_region = detection.region(img_edge);
+
+        //hough직선 검출
+        lines = detection.houghline(img_region);
 
         // 변환된 프레임을 출력 동영상에 저장
         writer.write(img_region);
